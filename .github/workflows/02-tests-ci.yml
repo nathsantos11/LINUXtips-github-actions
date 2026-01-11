@@ -24,6 +24,17 @@ jobs:
       ###
       ###
       ###
+      - name: "Setup Node.js"
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: "Instalar dependências"
+        run: npm ci
+
+      - name: "Executar testes com cobertura"
+        run: npm run tests
+
 
       - name: "Extrair porcentagem de cobertura" # Esse step será validado pelo desafio, não altere o nome. No final, ele deve gerar o output "coverage" com a porcentagem de cobertura.
         id: coverage
