@@ -32,5 +32,15 @@
   },
   "engines": {
     "node": ">=16.0.0"
+  },
+  "jest": {
+  "testEnvironment": "node",
+  "collectCoverage": true,
+  "coverageThreshold": {
+    "global": {
+      "statements": 80
+    }
   }
+}
+
 }
