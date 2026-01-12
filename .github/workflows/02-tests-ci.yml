@@ -43,6 +43,17 @@ jobs:
           echo "Coverage: $COVERAGE%"
           echo "coverage=$COVERAGE" >> $GITHUB_OUTPUT
 
+      - name: "Validar cobertura mínima"
+        run: |
+          echo "Cobertura encontrada: ${{ steps.coverage.outputs.coverage }}%"
+          if (( $(echo "${{ steps.coverage.outputs.coverage }} < $COVERAGE_MIN" | bc -l) )); then
+            echo "❌ Cobertura abaixo do mínimo exigido ($COVERAGE_MIN%)"
+            exit 1
+          else
+            echo "✅ Cobertura atende o mínimo exigido ($COVERAGE_MIN%)"
+          fi
+
+
   generate-certificate: # DAQUI PARA BAIXO, NÃO ALTERAR
       name: "Desafio Nível 2 - Certificado"
       runs-on: ubuntu-latest
